@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int info;
+    struct node *next;
+};
+struct node *start=NULL,*Last = NULL;
+
+void InsertAtEnd()
+{
+    struct node *new1;
+    new1=(struct node*)malloc(sizeof(struct node));
+    scanf("%d",&new1->info);
+    new1->next = NULL;
+    if(start==NULL)
+    {
+        Last=new1;
+        start=new1;
+    }
+    else
+    {
+        Last->next=new1;
+        Last=new1;
+    }
+    Last->next=NULL;
+}
+int main()
+{
+    int n;
+
+    while(1)
+    {
+        printf("Press 1 to Insert At end \n");
+        printf("Press 2 to Insert At start \n");
+        printf("Press 3 to Insert At an index \n");
+        printf("Press 4 to delete \n");
+        printf("Press 5 to quit loop\n");
+        printf("enter your choice:\n");
+        scanf("%d",&n);
+        if(n==1)
+        {
+          InsertAtEnd()  ;
+        }
+        else if(n==5)
+        {
+            break;
+        }
+
+
+
+
+    }
+  return 0;
+    
+}
