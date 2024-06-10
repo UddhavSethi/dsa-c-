@@ -1,0 +1,81 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int info;
+    struct node *next;
+};
+struct node *front=NULL,*rear = NULL;
+void InsertAtEnd()
+{
+      struct node *new1;
+    new1=(struct node*)malloc(sizeof(struct node));
+    scanf("%d",&new1->info);
+    new1->next = NULL;
+    if(front==NULL)
+    {
+        rear=new1;
+        front=new1;
+    }
+    else
+    {
+        rear->next=new1;
+        rear=new1;
+    }
+    rear->next=NULL;
+}
+
+
+   void DeleteAtBeg()
+{
+    
+    if(front==NULL)
+    {
+        printf("underflow");
+    }
+    else
+    {
+        struct node *current=front;
+        front=front->next;
+        current->next=NULL;
+        free(current);
+    }
+}
+void display()
+{
+    struct node *new1=front;
+    while(new1!=NULL)
+    {
+        printf("%d \n",new1->info);
+        new1=new1->next;
+    }
+}
+int main()
+{
+    int n;
+    while(1)
+    {
+        printf("press 1 to insert:\n");
+        printf("press 2 to delete:\n");
+        printf("press 3 to display:\n");
+        printf("press 4 to delete:\n");
+        printf("enter your choice:\n");
+        scanf("%d",&n);
+        if(n==1)
+        {
+            InsertAtEnd();
+        }
+        if(n==2)
+        {
+            DeleteAtBeg();
+        }
+        if(n==3)
+        {
+            display();
+        }
+         if(n==4)
+        {
+            break;
+        }
+    }
+}
