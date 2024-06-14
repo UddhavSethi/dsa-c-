@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node 
+{
+    int info;
+    struct node *next;
+};
+
+struct node *Last = NULL;
+
+void insert() 
+{
+    struct node* new1 = (struct node*)malloc(sizeof(struct node));
+    scanf("%d", &new1->info);
+    if (Last == NULL)
+    {
+        new1->next = new1;
+        Last = new1;
+    } 
+    else 
+    {
+        new1->next = Last->next;
+        Last->next = new1;
+        Last = new1;
+    }
+}
+
+void delete() 
+{
+    if (Last == NULL) 
+    {
+        printf("Underflow\n");
+    }
+    else if (Last->next == Last) 
+    { 
+        free(Last);
+        Last = NULL;
+    }
+    else 
+    {
+        struct node *temp = Last->next;
+        Last->next = temp->next;
+        free(temp);
+    }
+}
+
+void display() 
+{
+    if (Last == NULL) 
+    {
+        printf("Queue is empty\n");
+    } 
+    else 
+    {
+        struct node *current = Last->next;
+        do 
+        {
+            printf("%d\n", current->info);
+            current = current->next;
+        } while (current != Last->next);
+        printf("\n");
+    }
+}
+
+int main() 
+{
+    int n;
+    while (1)
+    {
+        printf("Press 1 to insert:\n");
+        printf("Press 2 to delete:\n");
+        printf("Press 3 to display:\n");
+        printf("Press 4 to quit:\n");
+        printf("Enter your choice:\n");
+        scanf("%d", &n);
+        if (n == 1) 
+        {
+            insert();
+        } 
+        else if (n == 2) 
+        {
+            delete();
+        } 
+        else if (n == 3) 
+        {
+            display();
+        }
+        else if (n == 4)
+        {
+            break;
+        } 
+        else 
+        {
+            printf("Invalid choice, try again.\n");
+        }
+    }
+    return 0;
+}
