@@ -1,3 +1,4 @@
+
 #include<stdio.h>
 #include<stdlib.h>
 struct node
@@ -5,186 +6,76 @@ struct node
     int info;
     struct node *next;
 };
-struct node *start=NULL,*Last = NULL;
-
-void InsertAtEnd()
-{
-    struct node *new1;
-    new1=(struct node*)malloc(sizeof(struct node));
-    scanf("%d",&new1->info);
-    new1->next = NULL;
-    if(start==NULL)
-    {
-        Last=new1;
-        start=new1;
-    }
-    else
-    {
-        Last->next=new1;
-        Last=new1;
-    }
-    Last->next=NULL;
-}
-void InsertAtStart()
+struct node *TOP=NULL,*END=NULL;
+void Push()
 {
     struct node *new1;
     new1=(struct node*)malloc(sizeof(struct node));
     new1->next=NULL;
     scanf("%d",&new1->info);
-    if(start==NULL)
+    if(TOP==NULL)
     {
-        start=new1;
-        Last=new1;
+        TOP=new1;
+        END=new1;
     }
     else
     {
-        new1->next=start;
-        start=new1;
+        new1->next=TOP;
+        TOP=new1;
     }
-    Last->next=NULL;
+    END->next=NULL;
 }
 void display()
 {
-    struct node *new1=start;
+    struct node *new1=TOP;
     while(new1!=NULL)
     {
         printf("%d \n",new1->info);
         new1=new1->next;
     }
 }
-void InsertAtPosition()
-{
-    struct node *new1;
-    int count=1;
-    scanf("%d",&new1->info);
-    new1->next=NULL;
-    int n;
-    printf("Enter index:\n");
-    scanf("%d",&n);
-     struct node *p=start;
-    while(count<n)
-    {
-        p=p->next;
-        count++;
-        
-    }
-    new1->next=p->next;
-    p->next=new1;
-}
-void DeleteAtBeg()
+void POP()
 {
     
-    if(start==NULL)
+    if(TOP==NULL)
     {
         printf("underflow");
     }
     else
     {
-        struct node *current=start;
-        start=start->next;
+        struct node *current=TOP;
+        TOP=TOP->next;
         current->next=NULL;
         free(current);
     }
 }
-    void DeleteAtEnd()
-    {
-         if(start==NULL)
-    {
-        printf("underflow");
-    }
-    else
-    {
-      struct node*current=start;
-       while (current->next != Last)
-        {
-            current = current->next;
-        }
-      free(Last);
-      Last=current;
-      current->next=NULL;
-    }
-    }
-void DeleteAtPosition()
-{
-    struct node* current=start;
-    struct node* prev=start;
-    int i=1,p;
-    printf("Enter postion:\n");
-    scanf("%d",&p);
-    while(1)
-    {
-        if(i==p)
-        {
-            break;
-        }
-        else if(i==(p-1))
-        {
-            current=current->next;
-        }
-        else
-        {
-            current=current->next;
-            prev=prev->next;
-        }
-        i++;
-    }
-    prev->next=current->next;
-    current->next=NULL;
-    free(current);
-}
+
 int main()
 {
     int n;
-
     while(1)
     {
-        printf("Press 1 to Insert At end \n");
-        printf("Press 2 to Insert At start \n");
-        printf("Press 3 to Insert At a position \n");
-        printf("Press 4 to display \n");
-        printf("Press 5 to delete at beg \n");
-        printf("Press 6 to delete at end \n");
-        printf("Press 7 to delete at a position \n");
-        printf("Press 8 to quit loop\n");
+        printf("press 1 to insert:\n");
+        printf("press 2 to delete:\n");
+        printf("press 3 to display:\n");
+        printf("press 4 to delete:\n");
         printf("enter your choice:\n");
         scanf("%d",&n);
         if(n==1)
         {
-          InsertAtEnd()  ;
+           Push();
         }
-        else if(n==8)
+        if(n==2)
+        {
+            POP();
+        }
+        if(n==3)
+        {
+            display();
+        }
+         if(n==4)
         {
             break;
         }
-         else if(n==2)
-        {
-            InsertAtStart();
-        }
-         else if(n==4)
-        {
-          display()  ;
-        }
-         else if(n==3)
-        {
-            InsertAtPosition();
-        }
-          else if(n==5)
-        {
-            DeleteAtBeg();
-        }
-          else if(n==6)
-        {
-            DeleteAtEnd();
-        }
-          else if(n==7)
-        {
-            DeleteAtPosition();
-        }
-
-
-
-
     }
-  return 0;
-    
 }
