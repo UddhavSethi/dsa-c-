@@ -58,7 +58,7 @@ int main()
         printf("press 1 to insert:\n");
         printf("press 2 to delete:\n");
         printf("press 3 to display:\n");
-        printf("press 4 to delete:\n");
+        printf("press 4 to quit:\n");
         printf("enter your choice:\n");
         scanf("%d",&n);
         if(n==1)
