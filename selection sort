@@ -1,0 +1,36 @@
+#include<stdio.h>
+int main()
+{
+    int n;
+    printf("enter number of elements:");
+    scanf("%d",&n);
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    
+    //selection sort
+for(int i=0;i<n-1;i++)
+{
+    int min=i;
+    for(int j=i+1;j<n;j++)
+    {
+        if(a[j]<a[min])
+        {
+            min=j;
+        }
+       
+    }
+    //swap values
+    int temp=a[i];
+        a[i]=a[min];
+        a[min]=temp;
+}
+//print sorted values
+ printf("sorted elements are:");
+for(int i=0;i<n;i++)
+    {
+        printf("%d \n",a[i]);
+    }
+}
