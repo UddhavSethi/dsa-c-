@@ -1,0 +1,84 @@
+#include <stdio.h>
+void enqueue(int arr[],int n);
+void dequeue(int arr[],int n);
+void display(int arr[],int n);
+int front=-1;
+int rear=-1;
+
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int arr[n];
+    while(1)
+    {
+        printf("select an option:\n");
+        printf("1)enqueue:\n");
+        printf("2)dequeue\n");
+        printf("3)break\n");
+        printf("4)display\n");
+        int option;
+        scanf("%d",&option);
+        if(option==1)
+        {
+            enqueue(arr,n);
+        }
+        else if(option==2)
+        {
+            dequeue(arr,n);
+        }
+        else if(option==3)
+        {
+            break;
+        }
+        else if(option==4)
+        {
+            display(arr,n);
+        }
+        
+    }
+}
+void enqueue(int arr[],int n)
+{
+    if(rear==n-1)
+    {
+        printf("overflow \n");
+        return;
+    }
+    else
+    {
+        rear++;
+        printf("Enter element:\n");
+        scanf("%d",&arr[rear]);
+        if(front==-1)
+        {
+            front++;
+        }
+    }
+}
+void dequeue(int arr[],int n)
+{
+    if(front==-1)
+    {
+        printf("underflow \n");
+        return;
+    }
+    else
+    {
+        printf("dequeued element is:%d \n",arr[front]);
+        arr[front]=0;
+        front++;
+        if(front==rear)
+        {
+            front=-1;
+            rear=-1;
+        }
+    }
+}
+void display(int arr[],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        printf("%d \n",arr[i]);
+    }
+}
