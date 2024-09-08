@@ -1,0 +1,96 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define SIZE 5
+struct queue 
+{
+    int array[SIZE];
+    int size;
+    int rear;
+    int front;
+};
+void initqueue(struct queue *q);
+void enqueue(struct queue *q,int value);
+int dequeue(struct queue *q);
+int checkOverFlow(struct queue *q);
+int checkUnderFlow(struct queue *q);
+int main()
+{
+    struct queue *q=(struct queue *)malloc(sizeof(struct queue));
+     initqueue(q);
+
+    enqueue(q, 10);
+    enqueue(q, 20);
+    enqueue(q, 30);
+    enqueue(q, 40);
+    enqueue(q, 50);
+
+    printf("Dequeued: %d\n", dequeue(q));
+    printf("Dequeued: %d\n", dequeue(q));
+    printf("Dequeued: %d\n", dequeue(q));
+
+    // Trying to enqueue into a full queue
+    enqueue(q, 60);
+    enqueue(q, 70); // Should print "Queue is full"
+
+    // Free allocated memory
+    free(q);
+    return 0;
+ 
+}
+void initqueue(struct queue *q)
+{
+    q->rear=-1;
+    q->front=-1;
+    q->size=SIZE;
+}
+void enqueue(struct queue *q,int value)
+{
+    if(checkOverFlow(q))
+    {
+        return;
+    }
+    else
+    {
+        if(q->front==-1)
+        {
+            q->front++;
+        }
+        q->rear++;
+        q->array[q->rear]=value;
+    }
+}
+int checkOverFlow(struct queue *q)
+{
+    if(q->rear==q->size-1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+int checkUnderFlow(struct queue *q)
+{
+    if(q->front==-1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+int dequeue(struct queue *q)
+{
+    if(checkUnderFlow(q))
+    {
+        return -1;
+    }
+    else
+    {
+        int element=q->array[q->rear];
+        q->rear--;
+        return element;
+    }
+}
