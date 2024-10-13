@@ -1,0 +1,70 @@
+
+#include <stdio.h>
+typedef struct Node
+{
+    int data;
+    struct Node *next;
+}Node;
+
+typedef struct Linklist
+{
+    Node *head;
+}Linklist;
+
+
+
+void innitLinklist(Linklist *l)
+{
+    l->head=NUll;
+}
+
+
+
+void InsertBeg(Linklist *l,int x)
+{
+    Node *new1=(Node*)malloc(sizeof(Node));
+    new1->data=x;
+    if(head==NULL)
+    {
+        l->head=new1;
+    }
+    else
+    {
+        new1->next=l->head;
+        l->head=new1;
+    }
+}
+
+void InsertEnd(Linklist *l,int x)
+{
+    Node *new1=(Node*)malloc(sizeof(Node));
+    new1->data=x;
+    new1->next=NULL;
+    Node *temp=l->head;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    temp->next=new1;
+}
+
+void InsertAtIndex(Linklist *l,int x,int s)
+{
+    Node *new1=(Node*)malloc(sizeof(Node));
+    new1->data=x;
+     for (int i = 0; i < s - 1 && temp != NULL; i++) 
+     {
+        temp = temp->next;
+    }
+    new1->next=temp->next;
+    temp->next=new1;
+}
+void Delete
+
+
+int main()
+{
+    printf("Hello World");
+
+    return 0;
+}
