@@ -1,0 +1,160 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef Node
+{
+    int vertex;
+    Node *next;
+}Node;
+
+typedef Graph
+{
+    int numVertex;
+    Node *adjList[];
+    bool *visited;
+}Graph;
+
+
+
+
+
+
+typedef Queue 
+{
+    int *items;
+    int rear;
+    int front;
+    int maxsize;
+}Queue;
+
+
+
+
+
+
+
+
+
+Queue* createQueue(int maxsize)
+{
+    Queue* q=(Queue*)malloc(sizeof(Queue));
+    q->items=(int*)malloc(maxsize*sizeof(int));
+    q->front=-1;
+    q->rear=-1;
+    q->maxsize=maxsize;
+}
+void enqueque(Queue *q,int x)
+{
+    if(isFull(q))
+    {
+        return;
+    }
+    else if(q->front==-1)
+    {
+        q->front++;
+        q->rear++;
+        q->item[q->rear]=x;
+    }
+    else
+    {
+         q->rear++;
+        q->item[q->rear]=x;
+    }
+}
+int dequeue(Queue *q)
+{
+    if(isEmpty(q))
+    {
+        return -1;
+    }
+    else
+    {
+        int data=q->item[q->front];
+        q->front++;
+        if(q->front>q->rear)
+        {
+            q->front=-1;
+            q->rear=-1;
+        }
+        
+    }
+    return data;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Graph* createGraph();
+void addEdge();
+Node *createNode();
+
+
+
+
+
+
+
+void BFS(Graph g*,int startVertex);
+{
+    Queue *q=CreateQueue(100);
+    g->visited[startVertex]=true;
+    enqueque(q,startVertix);
+    while(!isEmpty(q))
+    {
+        int currentVertex=dequeue(q);
+        printf(currentVertex);
+        node *adjlist=g->adjList[startVertex];
+        while(adjlist!=NULL)
+        {
+            int adjVertex=adjlist->next;
+            if(!g->visited[adjVertex])
+            {
+                g->visited[adjVertex]=true;
+                enqueque(q,adjVertex);
+            }
+            adjlist=adjlist->next;
+        }
+        
+    }
+}
+
+
+
+
+
+
+
+Graph* createGraph(int vertices)
+{
+    Graph *g=(Graph*)malloc(sizeof(Graph));
+    g->numVertex=vertices;
+    for(int i=0;i<vertices;i++)
+    {
+        g->adjList[i]=NULL;
+        g->visited=false;
+    }
+    return g;
+}
+Node *createNode(int vertex)
+{
+    Node *new1=(Node*)malloc(sizeof(Node));
+    new1->vertex=vertex;
+    new1->next=NULL;
+    return new1;
+}
+void addEdge(Graph *g,int src,int dest)
+{
+    Node *new1=createNode(dest);
+    new1->next=g->adjList[src];
+    g->adjList[src]=new1;
+}
