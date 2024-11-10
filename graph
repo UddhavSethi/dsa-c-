@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef Node
+{
+    int vertex;
+    Node *next;
+}Node;
+
+typedef Graph
+{
+    int numVertex;
+    Node *adjList[];
+    bool *visited;
+}Graph;
+
+
+Graph* createGraph();
+void addEdge();
+Node *createNode();
+void BFS();
+
+Graph* createGraph(int vertices)
+{
+    Graph *g=(Graph*)malloc(sizeof(Graph));
+    g->numVertex=vertices;
+    for(int i=0;i<vertices;i++)
+    {
+        g->adjList[i]=NULL;
+        g->visited=false;
+    }
+    return g;
+}
+Node *createNode(int vertex)
+{
+    Node *new1=(Node*)malloc(sizeof(Node));
+    new1->vertex=vertex;
+    new1->next=NULL;
+    return new1;
+}
+void addEdge(Graph *g,int src,int dest)
+{
+    Node *new1=createNode(dest);
+    new1->next=g->adjList[src];
+    g->adjList[src]=new1;
+}
