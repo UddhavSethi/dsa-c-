@@ -1,0 +1,15 @@
+void DFS(Graph* g, int startVertex) {
+    // Mark the starting vertex as visited and print it
+    g->visited[startVertex] = true;
+    printf("Visited %d\n", startVertex);
+
+    // Recursively visit all adjacent vertices
+    Node* adjList = g->adjLists[startVertex];
+    while (adjList != NULL) {
+        int adjVertex = adjList->vertex;
+        if (!g->visited[adjVertex]) {
+            DFS(g, adjVertex);  // Recursively call DFS for each unvisited neighbor
+        }
+        adjList = adjList->next;  // Move to the next adjacent vertex
+    }
+}
