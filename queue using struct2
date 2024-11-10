@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<stdlib>
+#define SIZE 5
+typedef struct Queue 
+{
+    int array[SIZE];
+    int front;
+    int rear;
+    int size;
+    int maxsize;
+}myQueue;
+
+
+myQueue *innitqueue(int maxsize)
+{
+    myQueue *q=(myQueue*)malloc(sizeof(myQueue));
+    q->array=(int)malloc(maxsize*sizeof(int));
+    q->front=0;
+    q->rear=-1;
+    q->size=0;
+    q->maxsize=maxsize;
+    return q;
+}
+void enqueue(myQueue *q,int x)
+{
+    if(QueueOverFlow)
+    {
+        return;
+    }
+    else
+    {
+        q->rear++;
+        q->array[q->rear]=x;
+        q->size++;
+    }
+}
+int dequeue(myQueue *q)
+{
+    if(QueueUnderFlow)
+    {
+        return INT_MIN;
+    }
+    int data=q->array[front];
+    q->front++;
+    q->size--;
+    return data;
+}
+bool QueueUnderFlow(*q)
+{
+return (q->size==0);
+}
